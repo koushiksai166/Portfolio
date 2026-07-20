@@ -4,10 +4,10 @@ export const resumeData = {
   contact: {
     phone: '+91 9059856466',
     email: 'saikoushik166@gmail.com',
-    linkedin: 'https://www.linkedin.com/in/koushik-sai-prakash-valluru',
-    github: 'https://github.com/koushik166',
+    linkedin: 'https://www.linkedin.com/in/koushik-sai-prakash-valluru-273ba9365',
+    github: 'https://github.com/koushiksai166',
   },
-  resumeUrl: '/Koushik_Valluru_Resume.pdf',
+  resumeUrl: '/Koushik_Latest.pdf',
   summary:
     "Full-stack developer with proven expertise building scalable web and mobile applications. Demonstrated success architecting and deploying production-ready CRM, e-commerce, and business management platforms. Proficient in React.js, React Native, FastAPI, Node.js, and MongoDB with strong focus on system design, API optimization, and real-time features.",
   tagline: ['Full Stack Developer', 'React Native Engineer', 'System Architect'],

@@ -60,18 +60,40 @@ export default function ChatBot() {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [typingMessage, setTypingMessage] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-  }, [messages, loading]);
+  }, [messages, loading, typingMessage, isTyping]);
+
+  // Typewriter effect function
+  const typeMessage = async (fullText) => {
+    setIsTyping(true);
+    setTypingMessage('');
+    const words = fullText.split(' ');
+    
+    for (let i = 0; i < words.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 30)); // 30ms delay between words
+      setTypingMessage(prev => prev + (i > 0 ? ' ' : '') + words[i]);
+    }
+    
+    // Once typing is complete, add the full message to messages array
+    setMessages((m) => [...m, { role: 'assistant', content: fullText }]);
+    setTypingMessage('');
+    setIsTyping(false);
+    setLoading(false);
+  };
 
   const sendMessage = async (text) => {
-    if (!text.trim() || loading) return;
+    if (!text.trim() || loading || isTyping) return;
     const userMsg = { role: 'user', content: text };
     setMessages((m) => [...m, userMsg]);
     setInput('');
     setLoading(true);
+    
+    let reply;
     try {
       const res = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -80,15 +102,14 @@ export default function ChatBot() {
       });
       if (!res.ok) throw new Error('API unavailable');
       const data = await res.json();
-      const reply = data.content?.[0]?.text || buildLocalResponse(text);
-      setMessages((m) => [...m, { role: 'assistant', content: reply }]);
+      reply = data.content?.[0]?.text || buildLocalResponse(text);
     } catch {
-      const reply = buildLocalResponse(text);
+      reply = buildLocalResponse(text);
       await new Promise((r) => setTimeout(r, 600));
-      setMessages((m) => [...m, { role: 'assistant', content: reply }]);
-    } finally {
-      setLoading(false);
     }
+    
+    // Start the typewriter effect
+    typeMessage(reply);
   };
 
   return (
@@ -126,8 +147,21 @@ export default function ChatBot() {
                 </div>
               </motion.div>
             ))}
+            {/* Show currently typing message */}
             <AnimatePresence>
-              {loading && (
+              {isTyping && typingMessage && (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex gap-3 justify-start">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center font-mono text-xs text-cyber-cyan">KV</div>
+                  <div className="max-w-[80%] rounded-xl px-4 py-3 text-sm leading-relaxed bg-cyber-cyan/5 border border-cyber-cyan/20 text-cyber-text-primary">
+                    <div className="prose prose-sm prose-invert max-w-none [&_strong]:text-cyber-cyan [&_li]:text-cyber-text-muted [&_ul]:space-y-1 [&_li]:list-none">
+                      <ReactMarkdown>{typingMessage}</ReactMarkdown>
+                    </div>
+                    <span className="inline-block w-1 h-4 bg-cyber-cyan ml-1 animate-pulse" />
+                  </div>
+                </motion.div>
+              )}
+              {/* Show loading indicator only before typing starts */}
+              {loading && !isTyping && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="flex gap-3 justify-start">
                   <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center font-mono text-xs text-cyber-cyan">KV</div>
                   <div className="bg-cyber-cyan/5 border border-cyber-cyan/20 rounded-xl px-4 py-3"><TypingIndicator /></div>
@@ -138,13 +172,13 @@ export default function ChatBot() {
           {messages.length <= 1 && (
             <div className="px-4 pb-3 flex flex-wrap gap-2">
               {SUGGESTED_PROMPTS.map((prompt, i) => (
-                <button key={i} onClick={() => sendMessage(prompt)} className="font-mono text-xs px-3 py-1.5 rounded-full glass border border-cyber-cyan/20 text-cyber-text-muted hover:text-cyber-cyan hover:border-cyber-cyan/40 transition-all">{prompt}</button>
+                <button key={i} onClick={() => sendMessage(prompt)} disabled={loading || isTyping} className="font-mono text-xs px-3 py-1.5 rounded-full glass border border-cyber-cyan/20 text-cyber-text-muted hover:text-cyber-cyan hover:border-cyber-cyan/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all">{prompt}</button>
               ))}
             </div>
           )}
           <div className="border-t border-white/5 p-4 flex gap-2">
             <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && sendMessage(input)} placeholder="Ask about Koushik's experience, projects, skills..." className="flex-1 bg-cyber-base/50 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-cyber-text-primary placeholder:text-cyber-text-muted/50 focus:outline-none focus:border-cyber-cyan/40 focus:shadow-glow-cyan-sm transition-all" />
-            <button onClick={() => sendMessage(input)} disabled={loading || !input.trim()} className="p-2.5 rounded-lg bg-gradient-cyber text-cyber-base disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-glow-cyan transition-all" aria-label="Send message"><Send size={18} /></button>
+            <button onClick={() => sendMessage(input)} disabled={loading || isTyping || !input.trim()} className="p-2.5 rounded-lg bg-gradient-to-r from-cyber-cyan to-cyber-cyan/80 text-cyber-base disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-glow-cyan transition-all" aria-label="Send message"><Send size={18} /></button>
           </div>
         </motion.div>
       </div>

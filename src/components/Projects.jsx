@@ -72,11 +72,27 @@ export default function Projects() {
             </div>
           </div>
         </motion.div>
-        {/* Add more projects here as they're completed */}
-        <div className="mt-6 grid sm:grid-cols-2 gap-6 opacity-30">
-          <div className="glass rounded-2xl border-dashed border-2 border-white/10 p-8 flex items-center justify-center min-h-[200px]">
-            <p className="font-mono text-sm text-cyber-text-muted text-center"><Cpu size={24} className="mx-auto mb-2 opacity-50" /><span>awaiting next project...</span></p>
-          </div>
+        <div className="mt-6 grid sm:grid-cols-2 gap-6">
+          <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.7, delay: 0.2 }} className="glass rounded-2xl overflow-hidden border border-cyber-cyan/20 hover:border-cyber-cyan/40 transition-all duration-500">
+            <div className="p-6 lg:p-8">
+              <div className="flex items-center gap-2 mb-4">
+                <Cpu className="text-cyber-cyan" size={20} />
+                <span className="font-mono text-xs text-cyber-text-muted uppercase tracking-wider">Web Portfolio / React</span>
+              </div>
+              <h3 className="font-heading text-lg sm:text-xl font-bold text-cyber-text-primary mb-4 leading-snug">Personal Portfolio Website</h3>
+              <p className="text-cyber-text-muted leading-relaxed mb-4">A modern cyberpunk-themed portfolio website built with React, featuring an AI chatbot that can answer interview questions about my experience based on my resume data.</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex gap-2 text-sm text-cyber-text-muted leading-relaxed"><span className="text-cyber-cyan mt-1 flex-shrink-0">▹</span><span>Built with React 18 + Vite for modern development workflow</span></li>
+                <li className="flex gap-2 text-sm text-cyber-text-muted leading-relaxed"><span className="text-cyber-cyan mt-1 flex-shrink-0">▹</span><span>AI chatbot with Claude API integration and local fallback responses</span></li>
+                <li className="flex gap-2 text-sm text-cyber-text-muted leading-relaxed"><span className="text-cyber-cyan mt-1 flex-shrink-0">▹</span><span>Framer Motion animations for fluid transitions and micro-interactions</span></li>
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                {["React.js", "Vite", "Framer Motion", "TailwindCSS", "Anthropic API"].map((tech, i) => (
+                  <span key={i} className="font-mono text-xs px-2.5 py-1 rounded-md bg-cyber-cyan/5 text-cyber-cyan border border-cyber-cyan/15">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
           <div className="glass rounded-2xl border-dashed border-2 border-white/10 p-8 flex items-center justify-center min-h-[200px]">
             <p className="font-mono text-sm text-cyber-text-muted text-center"><Cpu size={24} className="mx-auto mb-2 opacity-50" /><span>awaiting next project...</span></p>
           </div>

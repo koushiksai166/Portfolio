@@ -42,7 +42,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <button onClick={() => scrollTo('home')} className="font-mono text-lg font-bold text-cyber-cyan hover:shadow-glow-cyan-sm transition-all">
+          <button onClick={() => scrollTo('home')} className="font-mono text-2xl font-bold text-cyber-cyan hover:shadow-glow-cyan-sm transition-all">
             <span className="text-cyber-text-muted">&lt;</span>
             <span className="gradient-text-static mx-0.5">KV</span>
             <span className="text-cyber-text-muted">/&gt;</span>
@@ -53,7 +53,7 @@ export default function Navbar() {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                className={`px-4 py-2.5 text-base font-medium rounded-md transition-all duration-200 ${
                   activeSection === link.id ? 'text-cyber-cyan shadow-glow-cyan-sm' : 'text-cyber-text-muted hover:text-cyber-text-primary'
                 }`}
               >
@@ -62,10 +62,10 @@ export default function Navbar() {
             ))}
             <a
               href={resumeData.resumeUrl}
-              download
-              className="ml-2 flex items-center gap-2 px-4 py-2 text-sm font-mono font-medium rounded-md border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan/10 hover:shadow-glow-cyan transition-all duration-200"
+              download="Koushik_Latest.pdf"
+              className="ml-3 flex items-center gap-2 px-5 py-2.5 text-base font-mono font-medium rounded-md border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan/10 hover:shadow-glow-cyan transition-all duration-200"
             >
-              <Download size={14} />
+              <Download size={16} />
               Resume
             </a>
           </div>
@@ -90,7 +90,7 @@ export default function Navbar() {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`px-4 py-3 text-left text-sm font-medium rounded-md transition-all ${
+                  className={`px-4 py-4 text-left text-base font-medium rounded-md transition-all ${
                     activeSection === link.id ? 'text-cyber-cyan bg-cyber-cyan/5' : 'text-cyber-text-muted hover:text-cyber-text-primary hover:bg-white/5'
                   }`}
                 >
@@ -99,10 +99,10 @@ export default function Navbar() {
               ))}
               <a
                 href={resumeData.resumeUrl}
-                download
-                className="mt-2 flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono font-medium rounded-md border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan/10 transition-all"
+                download="Koushik_Latest.pdf"
+                className="mt-3 flex items-center justify-center gap-2 px-4 py-4 text-base font-mono font-medium rounded-md border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan/10 transition-all"
               >
-                <Download size={14} />
+                <Download size={16} />
                 Download Resume
               </a>
             </div>

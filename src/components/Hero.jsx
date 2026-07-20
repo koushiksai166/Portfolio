@@ -108,7 +108,7 @@ export default function Hero() {
           {resumeData.valueProp}
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <button onClick={() => scrollTo('projects')} className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-cyber text-cyber-base font-semibold hover:shadow-glow-cyan transition-all duration-300">
+          <button onClick={() => scrollTo('projects')} className="group flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyber-cyan to-cyber-cyan/80 text-cyber-base font-semibold hover:shadow-glow-cyan transition-all duration-300">
             View Projects
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
