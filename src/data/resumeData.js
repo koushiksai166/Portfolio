@@ -14,10 +14,7 @@ export const resumeData = {
   valueProp:
     'Full-stack developer building production healthcare, web, and mobile applications with React.js, React Native, FastAPI, Node.js, and MongoDB.',
   stats: [
-    { label: 'Roles in Full-Stack Development', value: 3, suffix: '+' },
-    { label: 'Building Production Apps', value: 1, suffix: '+' },
-    { label: 'Core Technologies', value: 5, suffix: '+' },
-    { label: 'AI/ML Research Project', value: 1, suffix: '' },
+    { label: 'Years Experience', value: 1.5, suffix: '+' },
   ],
   education: [
     { degree: 'MTech (Pursuing) — Computer Science', institution: 'Gokula Krishna College of Engineering' },
@@ -34,7 +31,7 @@ export const resumeData = {
       role: 'Full Stack Developer',
       company: 'Lasarkaali Life Sciences Pvt. Ltd.',
       location: 'Hyderabad',
-      period: 'Sep 2025 – Present',
+      period: 'Jan 2025 – Present',
       current: true,
       points: [
         'Develop and maintain healthcare web and mobile applications using React.js, React Native, FastAPI, Node.js, and MongoDB',
@@ -42,32 +39,6 @@ export const resumeData = {
         'Develop real-time features using Socket.IO for notifications and communication',
         'Deploy and maintain applications using Docker, Nginx, and Linux servers',
         'Integrate third-party services including payment gateways and messaging platforms',
-      ],
-    },
-    {
-      role: 'Junior Full Stack Developer',
-      company: 'SnapTics Branding Agency',
-      location: 'Hyderabad',
-      period: 'Jul 2025 – Sep 2025',
-      points: [
-        'Developed responsive web applications using React.js, JavaScript, and Tailwind CSS',
-        'Built backend APIs using Node.js and Express.js',
-        'Integrated third-party APIs and authentication services',
-        'Worked with Git for version control and participated in deployment workflows',
-        'Collaborated with designers and developers to deliver client requirements',
-      ],
-    },
-    {
-      role: 'Full Stack Developer Intern',
-      company: 'SnapTics Business Solutions',
-      location: 'Hyderabad',
-      period: 'Jan 2025 – Jun 2025',
-      points: [
-        'Built responsive web interfaces using React.js, HTML, CSS, and JavaScript',
-        'Assisted in backend API development using Node.js and Express.js',
-        'Worked on database integration and application testing',
-        'Participated in deployment and maintenance of web applications',
-        'Collaborated with senior developers to enhance application performance',
       ],
     },
   ],

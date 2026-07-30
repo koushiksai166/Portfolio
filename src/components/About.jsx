@@ -34,14 +34,6 @@ export default function About() {
         <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.6, delay: 0.1 }} className="text-cyber-text-muted text-lg leading-relaxed mb-12 ml-4">
           {resumeData.summary}
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.6, delay: 0.2 }} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {resumeData.stats.map((stat, i) => (
-            <div key={i} className="glass glass-hover rounded-xl p-6 text-center">
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              <p className="text-cyber-text-muted text-sm mt-2 leading-tight">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.6 }} className="mb-12">
           <div className="flex items-center gap-2 mb-4 ml-4">
             <GraduationCap className="text-cyber-cyan" size={20} />

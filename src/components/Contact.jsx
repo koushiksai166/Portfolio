@@ -58,7 +58,7 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
-          <motion.form initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.6 }} onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-4">
+          <motion.form initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-100px' }} transition={{ duration: 0.6 }} onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-5 overflow-visible">
             <div>
               <label className="font-mono text-xs text-cyber-text-muted uppercase block mb-1.5">Name</label>
               <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full bg-cyber-base/50 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-cyber-text-primary focus:outline-none focus:border-cyber-cyan/40 focus:shadow-glow-cyan-sm transition-all" placeholder="Your name" />
@@ -71,7 +71,7 @@ export default function Contact() {
               <label className="font-mono text-xs text-cyber-text-muted uppercase block mb-1.5">Message</label>
               <textarea required rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full bg-cyber-base/50 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-cyber-text-primary focus:outline-none focus:border-cyber-cyan/40 focus:shadow-glow-cyan-sm transition-all resize-none" placeholder="Your message..." />
             </div>
-            <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-cyber text-cyber-base font-semibold hover:shadow-glow-cyan transition-all">
+            <button type="submit" className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyber-cyan to-cyber-violet text-cyber-base font-semibold hover:shadow-glow-cyan transition-all">
               {sent ? 'Opening email...' : <>Send Message<Send size={16} /></>}
             </button>
           </motion.form>
